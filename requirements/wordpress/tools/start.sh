@@ -1,5 +1,3 @@
 #!/bin/bash
 
-service php7.3-fpm start
-
-bash
+/usr/sbin/php-fpm7.3 --nodaemonize
