@@ -1,0 +1,41 @@
+version : "3.9"
+services:
+  wordpress:
+    container_name: wordpress_
+    build: ./requirements/wordpress
+    env_file: .env
+    restart: always
+    networks:
+      - docker-network
+    volumes:
+      - wp_vl:/var/www/html
+      
+  nginx:
+    container_name: nginx_
+    build: ./requirements/nginx
+    depends_on:
+      - wordpress
+    networks:
+      - docker-network
+    ports:
+      - "443:443"
+    restart: always
+    volumes:
+      - "wp_vl:/var/www/html"
+
+networks:
+  docker-network:
+
+volumes:
+  db-volume:
+    driver: local
+    driver_opts:
+      device: /home/charli/data/db
+      type: volume
+      o: bind
+  wp_vl:
+    driver: local
+    driver_opts:
+      device: /home/charli/data/wp
+      type: volume
+      o: bind
