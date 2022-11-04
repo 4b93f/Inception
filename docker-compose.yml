@@ -23,11 +23,21 @@ services:
     volumes:
       - "wp_vl:/var/www/html"
 
+  # mariadb:
+  #   container_name: mariadb
+  #   build: ./requirements/mariadb
+  #   env_file: .env
+  #   restart: always
+  #   networks:
+  #     - docker-network
+  #   volumes:
+  #     - db_vl:/var/lib/mysql
+
 networks:
   docker-network:
 
 volumes:
-  db-volume:
+  db_vl:
     driver: local
     driver_opts:
       device: /home/charli/data/db
