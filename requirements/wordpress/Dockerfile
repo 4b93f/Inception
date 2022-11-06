@@ -22,6 +22,6 @@ RUN wp core download --allow-root
 RUN chown -R www-data:www-data /var/www/html
 
 #RUN rm -rf /var/www/html/wordpress/wp-config-sample.php
-#COPY conf/wp-config.php /var/www/html/wordpress
+COPY conf/wp-config.php /var/www/html/wordpress
 
 ENTRYPOINT ["sh", "/tmp/start.sh"]
