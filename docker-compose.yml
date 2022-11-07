@@ -2,6 +2,7 @@ version : "3.9"
 services:
   wordpress:
     container_name: wordpress_
+    image: wordpress
     build: ./requirements/wordpress
     env_file: .env
     depends_on:
@@ -15,6 +16,7 @@ services:
       
   nginx:
     container_name: nginx_
+    image: nginx
     build: ./requirements/nginx
     depends_on:
       - wordpress
@@ -27,7 +29,8 @@ services:
       - "wp_vl:/var/www/html"
 
   mariadb:
-    container_name: mariadb
+    container_name: mariadb_
+    image: mariadb
     build: ./requirements/mariadb
     env_file: .env
     restart: unless-stopped
@@ -38,10 +41,10 @@ services:
     volumes:
       - db_vl:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-u", "$MARIADB_USER", "-p$MARIADB_PASSWORD"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "echo"]
+      interval: 8s
+      timeout: 3s
+      retries: 10
 
 networks:
   docker-network:

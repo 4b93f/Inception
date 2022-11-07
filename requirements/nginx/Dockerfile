@@ -10,4 +10,5 @@ COPY tools/start.sh /root
 RUN mkdir -p /etc/nginx/ssl
 RUN chmod 700 /etc/nginx/ssl
 
+
 ENTRYPOINT ["sh", "/root/start.sh"]
